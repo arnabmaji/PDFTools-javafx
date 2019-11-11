@@ -1,32 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.text.Text?>
 <?import com.jfoenix.controls.JFXButton?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.arnab.controller.TextToPDFController"
-            stylesheets="@../styles/style.css">
-
-    <top>
-        <Text
-            text="Text to PDF Converter"
-            BorderPane.alignment="CENTER"
-            styleClass="large-text"/>
-    </top>
-    <center>
-        <GridPane
-            alignment="CENTER" hgap="10" vgap="10">
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<StackPane
+    fx:id="stackPane"
+    xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.arnab.controller.TextToPDFController"
+    stylesheets="@../styles/style.css">
+    <BorderPane>
+        <top>
+            <Text
+                    text="Text to PDF Converter"
+                    BorderPane.alignment="CENTER"
+                    styleClass="large-text"/>
+        </top>
+        <center>
+            <GridPane
+                    alignment="CENTER" hgap="10" vgap="10">
+                <HBox
+                        GridPane.rowIndex="0"
+                        GridPane.columnIndex="0"
+                        GridPane.columnSpan="2"
+                        GridPane.halignment="CENTER"
+                        alignment="CENTER"
+                        spacing="5">
+                    <JFXButton
+                            text="Select Text file"
+                            fx:id="textFileSelectorButton"
+                            styleClass="file-selector"
+                            onAction="#selectSourceFile"/>
+                    <ImageView fitHeight="40" fitWidth="40" fx:id="sourceFileSelectedImage" visible="false">
+                        <Image url="@../images/checked.png"/>
+                    </ImageView>
+                </HBox>
+                <VBox
+                    GridPane.rowIndex="1"
+                    GridPane.columnIndex="0"
+                    spacing="15"
+                    GridPane.halignment="CENTER">
+                    <fx:define>
+                        <ToggleGroup fx:id="fontStyleGroup"/>
+                    </fx:define>
+                    <Text
+                        text="Font Style"/>
+                    <JFXRadioButton
+                            text="Normal"
+                            toggleGroup="$fontStyleGroup" selected="true"/>
+                    <JFXRadioButton
+                            text="Bold"
+                            toggleGroup="$fontStyleGroup"/>
+                    <JFXRadioButton
+                            text="Italic"
+                            toggleGroup="$fontStyleGroup"/>
+                <JFXRadioButton
+                            text="Bold Italic"
+                            toggleGroup="$fontStyleGroup"/>
+                </VBox>
+                <VBox
+                GridPane.rowIndex="1"
+                GridPane.columnIndex="1"
+                spacing="15"
+                GridPane.halignment="CENTER">
+                    <fx:define>
+                        <ToggleGroup fx:id="paperSizeGroup"/>
+                    </fx:define>
+                    <Text
+                        text="Paper Size"/>
+                    <JFXRadioButton
+                            text="A3"
+                            toggleGroup="$paperSizeGroup"/>
+                    <JFXRadioButton
+                            text="A4"
+                            toggleGroup="$paperSizeGroup" selected="true"/>
+                    <JFXRadioButton
+                            text="Letter"
+                            toggleGroup="$paperSizeGroup"/>
+                <JFXRadioButton
+                            text="Legal"
+                            toggleGroup="$paperSizeGroup"/>
+                </VBox>
+                <VBox
+                        GridPane.rowIndex="2"
+                        GridPane.columnIndex="0"
+                        GridPane.columnSpan="2"
+                        GridPane.halignment="CENTER"
+                        spacing="10">
+                    <Text
+                        text="Font Size"/>
+                    <Spinner
+                         fx:id="fontSizeSpinner"
+                         min="8"
+                         amountToStepBy="1"
+                         max="36"
+                         initialValue="12"/>
+                </VBox>
+                <HBox
+                        GridPane.rowIndex="3"
+                        GridPane.columnIndex="0"
+                        GridPane.columnSpan="2"
+                        GridPane.halignment="CENTER"
+                    alignment="CENTER"
+                    spacing="5">
+                    <JFXButton
+                            text="Select Destination Folder"
+                            fx:id="destinationFolderSelectorButton"
+                            styleClass="file-selector"
+                            onAction="#selectDestinationFolder"/>
+                    <ImageView fitHeight="40" fitWidth="40" fx:id="destinationFolderSelectedImage" visible="false">
+                        <Image url="@../images/checked.png"/>
+                    </ImageView>
+                </HBox>
             <JFXButton
-                text="Select your File"
-                GridPane.rowIndex="0"
-                GridPane.columnIndex="0"/>
-        </GridPane>
-    </center>
-
-</BorderPane>
+                text="Generate PDF"
+                GridPane.rowIndex="4"
+                GridPane.columnIndex="0"
+                GridPane.columnSpan="2"
+                onAction="#generatePDF"/>
+            </GridPane>
+        </center>
+    </BorderPane>
+</StackPane>

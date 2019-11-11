@@ -1,6 +1,6 @@
 .root  {
     -fx-background-color: white;
-    -fx-padding: 16;
+    -fx-padding: 8;
 }
 .large-text{
     -fx-font-size: 25;
@@ -16,8 +16,10 @@ Text{
     -fx-pref-width: 200;
     -fx-text-fill: WHITE;
 }
+.file-selector{
+    -fx-background-color: #f55c36;
+}
 .btn-lg{
-    -fx-pref-width: 150;
     -fx-pref-height: 150;
-    -fx-font-weight: 16;
+    -fx-pref-width: 150;
 }
