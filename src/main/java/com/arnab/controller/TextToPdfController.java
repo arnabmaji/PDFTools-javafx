@@ -1,5 +1,6 @@
 package com.arnab.controller;
 
+import com.arnab.App;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.jfoenix.controls.*;
@@ -16,10 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
+import java.io.*;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -74,7 +72,7 @@ public class TextToPdfController implements Initializable {
     @FXML private void selectDestinationFolder(){
         var layout = new JFXDialogLayout();
         File selectedDestination = new DirectoryChooser().showDialog(new Stage());
-        if(selectedDestination == null || !selectedDestination.isDirectory() || !selectedDestination.canRead()){
+        if(selectedDestination == null || !selectedDestination.isDirectory() || !selectedDestination.canWrite()){
             layout.setBody(new Text("Error "));
             new JFXDialog(stackPane, layout, JFXDialog.DialogTransition.CENTER).show();
             return;
@@ -101,13 +99,21 @@ public class TextToPdfController implements Initializable {
         var dialog = new JFXDialog(stackPane, layout, JFXDialog.DialogTransition.BOTTOM);
         dialog.show();
         PauseTransition delay = new PauseTransition(Duration.seconds(3));
-        delay.setOnFinished(event -> dialog.close());
+        delay.setOnFinished(event -> {
+            dialog.close();
+            try{
+                App.setRoot("main_window");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        });
         delay.play();
         new Thread(() -> {
+            String fileNameWithExtension = sourceFile.getName() + ".pdf";
             String pageSize = ((JFXRadioButton) paperSizeGroup.getSelectedToggle()).getText();
             String fontStyle = ((JFXRadioButton) fontStyleGroup.getSelectedToggle()).getText();
 
-            String pdfFilePath = destinationFolder.getAbsolutePath() + "/" + sourceFile.getName() + ".pdf";
+            String pdfFilePath = destinationFolder.getAbsolutePath() + "/" + fileNameWithExtension;
 
             Document pdfDoc = new Document(pageSizeMap.get(pageSize));
             try{

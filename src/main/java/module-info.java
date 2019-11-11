@@ -4,6 +4,8 @@ module com.arnab {
     requires com.jfoenix;
     requires itextpdf;
     requires pdfbox.tools;
+    requires pdfbox;
+    requires pdfbox.debugger;
 
     opens com.arnab to javafx.fxml;
     opens com.arnab.controller;

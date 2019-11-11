@@ -31,7 +31,9 @@
                         GridPane.rowIndex="0"
                         GridPane.columnIndex="0">
                     <JFXButton
+                            fx:id="sourceFileSelectorButton"
                             text="Select PDF"
+                            onAction="#selectSourceFile"
                             styleClass="file-selector"/>
                     <ImageView
                             fitWidth="40"
@@ -56,8 +58,10 @@
                         GridPane.rowIndex="2"
                         GridPane.columnIndex="0">
                     <JFXButton
+                            fx:id="destinationFolderSelectorButton"
                             text="Select Destination Folder"
-                            styleClass="file-selector"/>
+                            styleClass="file-selector"
+                            onAction="#selectDestinationFolder"/>
                     <ImageView
                             fitWidth="40"
                             fitHeight="40"
