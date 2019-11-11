@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import com.jfoenix.controls.JFXTextField?>
+
+<StackPane
+    fx:id="stackPane"
+    xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.arnab.controller.PdfToTextController"
+    stylesheets="@../styles/style.css">
+    <BorderPane >
+        <top>
+            <Text
+                    text="PDF to Text Converter"
+                    BorderPane.alignment="CENTER"
+                    styleClass="large-text"/>
+        </top>
+        <center>
+            <GridPane
+                    alignment="CENTER"
+                    hgap="15"
+                    vgap="10">
+                <HBox
+                        spacing="5"
+                        GridPane.rowIndex="0"
+                        GridPane.columnIndex="0">
+                    <JFXButton
+                            text="Select PDF"
+                            styleClass="file-selector"/>
+                    <ImageView
+                            fitWidth="40"
+                            fitHeight="40"
+                            visible="false"
+                            fx:id="sourceFileSelectedImageView">
+                        <Image url="@../images/checked.png"/>
+                    </ImageView>
+                </HBox>
+                <VBox
+                        GridPane.rowIndex="1"
+                        GridPane.columnIndex="0"
+                        spacing="5">
+                    <Text
+                            text="Enter File extension"/>
+                    <JFXTextField
+                            fx:id="fileExtensionTextField"/>
+                </VBox>
+                <HBox
+                        spacing="5"
+                        alignment="CENTER"
+                        GridPane.rowIndex="2"
+                        GridPane.columnIndex="0">
+                    <JFXButton
+                            text="Select Destination Folder"
+                            styleClass="file-selector"/>
+                    <ImageView
+                            fitWidth="40"
+                            fitHeight="40"
+                            visible="false"
+                            fx:id="destinationFolderSelectedImageView">
+                        <Image url="@../images/checked.png"/>
+                    </ImageView>
+                </HBox>
+                <JFXButton
+                        text="Generate"
+                        GridPane.rowIndex="3"
+                        GridPane.columnIndex="0"
+                        onAction="#generateText"/>
+
+            </GridPane>
+        </center>
+
+    </BorderPane>
+</StackPane>
+

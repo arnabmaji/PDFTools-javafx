@@ -24,7 +24,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class TextToPDFController implements Initializable {
+public class TextToPdfController implements Initializable {
 
     @FXML private StackPane stackPane;
     @FXML private ToggleGroup fontStyleGroup;

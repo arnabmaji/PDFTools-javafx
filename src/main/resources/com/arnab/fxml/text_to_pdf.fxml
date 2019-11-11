@@ -11,7 +11,7 @@
     fx:id="stackPane"
     xmlns="http://javafx.com/javafx"
     xmlns:fx="http://javafx.com/fxml"
-    fx:controller="com.arnab.controller.TextToPDFController"
+    fx:controller="com.arnab.controller.TextToPdfController"
     stylesheets="@../styles/style.css">
     <BorderPane>
         <top>
